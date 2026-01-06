@@ -28,6 +28,11 @@ gendiff --format plain file1.json file2.json
 Asciinema: https://asciinema.org/a/jDP3iUAd4HyQL606fO4Sy4aPk
 
 
+## JSON format demo
+
+Asciinema: https://asciinema.org/a/i0kynPvfrknMk5Zea2tCohRvd
+
+
 Тесты
 
 ```bash

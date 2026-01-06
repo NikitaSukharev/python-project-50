@@ -15,3 +15,10 @@ def test_plain_format():
     expected = Path('tests/test_data/expected_plain.txt').read_text()
 
     assert generate_diff(file1, file2, 'plain') == expected
+
+
+def test_json_format():
+    file1 = Path('tests/test_data/file1.json')
+    file2 = Path('tests/test_data/file2.json')
+    expected = Path('tests/test_data/expected_json.txt').read_text()
+    assert generate_diff(file1, file2, 'json') == expected

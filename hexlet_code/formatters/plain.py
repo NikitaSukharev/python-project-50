@@ -29,7 +29,6 @@ def format_plain(diff):
                     f"Property '{property_path}' was updated. From {old} to {new}"
                 )
 
-
         return lines
 
     return '\n'.join(iter_(diff, ''))
