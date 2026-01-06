@@ -17,6 +17,7 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["hexlet_code"]
+py-modules = ["gendiff"]
 
 [project.optional-dependencies]
 dev = [
