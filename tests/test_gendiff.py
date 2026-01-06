@@ -7,3 +7,11 @@ def test_recursive_json_diff():
     file2 = Path('tests/test_data/file2.json')
     expected = Path('tests/test_data/expected_stylish.txt').read_text()
     assert generate_diff(file1, file2) == expected
+
+
+def test_plain_format():
+    file1 = Path('tests/test_data/file1.json')
+    file2 = Path('tests/test_data/file2.json')
+    expected = Path('tests/test_data/expected_plain.txt').read_text()
+
+    assert generate_diff(file1, file2, 'plain') == expected
