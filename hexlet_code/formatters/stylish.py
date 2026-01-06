@@ -1,47 +1,64 @@
-def format_value(value):
-    if value is True:
-        return 'true'
-    if value is False:
-        return 'false'
-    if value is None:
-        return 'null'
-    return str(value)
+INDENT = 4
+SIGN_OFFSET = 2
 
 
 def stringify(value, depth):
     if not isinstance(value, dict):
-        return format_value(value)
+        if value is True:
+            return 'true'
+        if value is False:
+            return 'false'
+        if value is None:
+            return 'null'
+        return str(value)
 
-    indent = ' ' * (depth * 4)
+    indent = ' ' * (depth * INDENT)
+    closing_indent = ' ' * ((depth - 1) * INDENT)
+
     lines = []
-
     for key, val in value.items():
-        lines.append(
-            f"{indent}    {key}: {stringify(val, depth + 1)}"
-        )
+        lines.append(f"{indent}{key}: {stringify(val, depth + 1)}")
 
-    return "{\n" + "\n".join(lines) + "\n" + indent + "}"
+    return "{\n" + "\n".join(lines) + f"\n{closing_indent}}}"
 
 
-def format_stylish(diff, depth=1):
-    indent = ' ' * (depth * 4 - 2)
-    lines = []
+def format_stylish(diff):
+    def iter_(nodes, depth):
+        lines = []
+        indent = ' ' * (depth * INDENT - SIGN_OFFSET)
 
-    for node in diff:
-        key = node['key']
-        t = node['type']
+        for node in nodes:
+            key = node['key']
+            node_type = node['type']
 
-        if t == 'nested':
-            children = format_stylish(node['children'], depth + 1)
-            lines.append(f"{indent}  {key}: {{\n{children}\n{' ' * (depth * 4)}}}")
-        elif t == 'added':
-            lines.append(f"{indent}+ {key}: {stringify(node['value'], depth)}")
-        elif t == 'removed':
-            lines.append(f"{indent}- {key}: {stringify(node['value'], depth)}")
-        elif t == 'unchanged':
-            lines.append(f"{indent}  {key}: {stringify(node['value'], depth)}")
-        elif t == 'changed':
-            lines.append(f"{indent}- {key}: {stringify(node['old_value'], depth)}")
-            lines.append(f"{indent}+ {key}: {stringify(node['new_value'], depth)}")
+            if node_type == 'nested':
+                children = iter_(node['children'], depth + 1)
+                lines.append(f"{indent}  {key}: {children}")
 
-    return '\n'.join(lines)
+            elif node_type == 'unchanged':
+                lines.append(
+                    f"{indent}  {key}: {stringify(node['value'], depth + 1)}"
+                )
+
+            elif node_type == 'removed':
+                lines.append(
+                    f"{indent}- {key}: {stringify(node['value'], depth + 1)}"
+                )
+
+            elif node_type == 'added':
+                lines.append(
+                    f"{indent}+ {key}: {stringify(node['value'], depth + 1)}"
+                )
+
+            elif node_type == 'changed':
+                lines.append(
+                    f"{indent}- {key}: {stringify(node['old_value'], depth + 1)}"
+                )
+                lines.append(
+                    f"{indent}+ {key}: {stringify(node['new_value'], depth + 1)}"
+                )
+
+        closing_indent = ' ' * ((depth - 1) * INDENT)
+        return "{\n" + "\n".join(lines) + f"\n{closing_indent}}}"
+
+    return iter_(diff, 1)
