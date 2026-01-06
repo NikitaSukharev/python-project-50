@@ -1,5 +1,41 @@
-### Hexlet tests and linter status:
-[![Actions Status](https://github.com/NikitaSukharev/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/NikitaSukharev/python-project-50/actions)
+Утилита для поиска различий между двумя конфигурационными файлами.
+
+Поддерживаемые форматы входных файлов:
+- JSON
+- YAML
+
+Поддерживаемые форматы вывода:
+- stylish (по умолчанию)
+- plain
 
 
-[![asciinema](https://asciinema.org/a/xrYfO3DiLYPcV3s5pNbNDQ3aA.svg)](https://asciinema.org/a/xrYfO3DiLYPcV3s5pNbNDQ3aA)
+```bash
+make install
+```
+
+
+Сравнение файлов (stylish по умолчанию)
+
+```bash
+gendiff file1.json file2.json
+```
+
+```bash
+gendiff --format plain file1.json file2.json
+```
+
+
+Asciinema: https://asciinema.org/a/jDP3iUAd4HyQL606fO4Sy4aPk
+
+
+Тесты
+
+```bash
+make test
+```
+
+Линтер
+
+```bash
+make lint
+```
