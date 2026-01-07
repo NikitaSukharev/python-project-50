@@ -6,4 +6,4 @@ lint:
 
 test:
 	uv pip install -e .
-	uv run pytest -vv
+	uv run pytest tests/ -vv --exitfirst
