@@ -1,5 +1,5 @@
 from pathlib import Path
-from hexlet_code import generate_diff
+from hexlet_code.gendiff import generate_diff
 
 
 def test_recursive_json_diff():
