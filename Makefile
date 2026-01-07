@@ -5,4 +5,5 @@ lint:
 	uv run flake8
 
 test:
-	uv run pytest
+	uv pip install -e .
+	uv run pytest -vv
