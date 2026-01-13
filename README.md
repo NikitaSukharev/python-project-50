@@ -1,46 +1,46 @@
-Утилита для поиска различий между двумя конфигурационными файлами.
+Difference Calculator (gendiff)
 
-Поддерживаемые форматы входных файлов:
-- JSON
-- YAML
+gendiff is a command-line tool for finding differences between files. This is the second project developed as part of the Hexlet course.
+Requirements:
 
-Поддерживаемые форматы вывода:
-- stylish (по умолчанию)
-- plain
+[Python 3.13 +] - (https://www.python.org/downloads/)
 
+[UV 0.5.11 +] - (https://astral.sh)
 
-```bash
-make install
-```
+Installation:
 
+git clone git@github.com:lyovaparsyan94/python-project-50.git
+cd python-project-50
+uv build
+uv tool install dist/*.whl
+Supported File Formats
 
-Сравнение файлов (stylish по умолчанию)
+- JSON (.json)
 
-```bash
-gendiff file1.json file2.json
-```
+- YAML (.yaml, .yml)
 
-```bash
-gendiff --format plain file1.json file2.json
-```
+Usage
 
+Place the files you want to compare inside the tests/test_data directory.
+Run the following command, replacing file1 and file2 with your actual file names:
+uv run gendiff tests/test_data/<file1> tests/test_data/<file2>
+By default, the output is formatted using the stylish formatter.
+To use a different format (json or plain), specify it with the -f flag:
+Пример вывода инструмента при использовании разных форматтеров:
 
-Asciinema: https://asciinema.org/a/jDP3iUAd4HyQL606fO4Sy4aPk
+Default (stylish) formatter:
+uv run gendiff tests/test_data/<file1> tests/test_data/<file1>
+Using the JSON formatter:
+uv run gendiff -f stylish tests/test_data/<file1> tests/test_data/<file1>
+Using the Plain formatter:
+uv run gendiff -f plain tests/test_data/<file1> tests/test_data/<file1>
+Development and Testing
 
+Linting
 
-## JSON format demo
+Run ruff to check for linting issues:
 
-Asciinema: https://asciinema.org/a/i0kynPvfrknMk5Zea2tCohRvd
-
-
-Тесты
-
-```bash
-make test
-```
-
-Линтер
-
-```bash
 make lint
-```
+Running Tests
+
+make test-coverage

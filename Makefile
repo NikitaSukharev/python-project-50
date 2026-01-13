@@ -1,14 +1,30 @@
 install:
-	cd code && uv pip install -e .[dev]
+	uv sync
 
-lint:
-	cd code && uv run flake8
+run:
+	uv run gendiff
 
 test:
-	cd code && uv pip install -e .
-	rm -rf .pytest_cache tests/__pycache__
-	uv run pytest tests/ -vv --exitfirst
+	uv run pytest
 
-setup:
-	rm -rf .pytest_cache tests/__pycache__
-	uv sync
+test-coverage:
+	uv run pytest --cov=gendiff --cov-report=xml:coverage.xml
+
+lint:
+	uv run ruff check gendiff
+
+check: test lint
+
+build:
+	uv build
+
+package-install:
+	uv tool install dist/*.whl
+
+reinstall:
+	uv tool install --force dist/*.whl
+
+uninstall:
+	uv tool uninstall hexlet-code
+
+.PHONY: install test lint selfcheck check build package-install reinstall uninstall
