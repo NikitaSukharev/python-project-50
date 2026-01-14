@@ -47,8 +47,8 @@ def find_diff(data1, data2):
     diff = []
 
     for key in keys_union:
-        value1 = data1.get(key)
-        value2 = data2.get(key)
+        value1 = data1[key]
+        value2 = data2[key]
 
         if key in keys_added:
             diff.append(item_add(key, value2))
