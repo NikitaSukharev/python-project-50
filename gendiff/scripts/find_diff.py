@@ -47,14 +47,19 @@ def find_diff(data1, data2):
     diff = []
 
     for key in keys_union:
+    if key in keys_added:
+        value2 = data2[key]
+        diff.append(item_add(key, value2))
+
+    elif key in keys_deleted:
+        value1 = data1[key]
+        diff.append(item_delete(key, value1))
+
+    else:
         value1 = data1[key]
         value2 = data2[key]
 
-        if key in keys_added:
-            diff.append(item_add(key, value2))
-        elif key in keys_deleted:
-            diff.append(item_delete(key, value1))
-        elif isinstance(value1, dict) and isinstance(value2, dict):
+        if isinstance(value1, dict) and isinstance(value2, dict):
             diff.append(items_nested(key, value1, value2))
         elif value1 != value2:
             diff.append(items_modified(key, value1, value2))
