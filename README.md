@@ -9,7 +9,7 @@ Requirements:
 
 Installation:
 
-git clone git@github.com:lyovaparsyan94/python-project-50.git
+git clone git@github.com:NikitaSukharev/python-project-50.git
 cd python-project-50
 uv build
 uv tool install dist/*.whl
