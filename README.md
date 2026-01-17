@@ -11,7 +11,7 @@ Installation:
 
 git clone git@github.com:NikitaSukharev/python-project-50.git
 cd python-project-50
-uv build
+```uv build```
 uv tool install dist/*.whl
 Supported File Formats
 
