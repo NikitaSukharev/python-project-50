@@ -1,4 +1,4 @@
-name: Python CI
+﻿name: Python CI
 on:
   - push
   - pull_request
@@ -7,8 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-  	with:
-    	  fetch-depth: 0
+        with:
+          fetch-depth: 0
       - name: Set up Python
         uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5.3.0
         with:
