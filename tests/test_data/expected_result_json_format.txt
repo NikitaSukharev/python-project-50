@@ -48,7 +48,7 @@
                                 "action": "modified",
                                 "name": "wow",
                                 "new_value": "so much",
-                                "old_value": ""
+                                "old_value": "value"
                             }
                         ]
                     },
