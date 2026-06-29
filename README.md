@@ -1,61 +1,34 @@
-## Difference Calculator (gendiff)
+### Hexlet tests and linter status:
+[![Actions Status](https://github.com/NikitaSukharev/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/NikitaSukharev/python-project-50/actions)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=NikitaSukharev_python-project-50&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=NikitaSukharev_python-project-50)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=NikitaSukharev_python-project-50&metric=coverage)](https://sonarcloud.io/summary/new_code?id=NikitaSukharev_python-project-50)
 
-gendiff is a command-line tool for finding differences between files. This is the second project developed as part of the Hexlet course.
-Requirements:
+## Difference Calculator
 
-[Python 3.13 +] - (https://www.python.org/downloads/)
+Утилита для вычисления разницы между двумя конфигурационными файлами (JSON или YAML).
 
-[UV 0.5.11 +] - (https://astral.sh)
+## Установка
 
-## Installation: 
-``` bash
-git clone git@github.com:NikitaSukharev/python-project-50.git
+```bash
+make install
+make build
+make package-install
 ```
-``` bash
-cd python-project-50
+
+## Использование
+
+```bash
+gendiff file1.json file2.json
+gendiff --format plain file1.yaml file2.yaml
+gendiff --format json file1.json file2.json
 ```
 
+## Форматы вывода
 
-``` bash
-uv build
-```
-``` bash
-uv tool install dist/*.whl
-```
-## Supported File Formats
+- `stylish` (по умолчанию) — древовидный вид с маркерами `+`/`-`
+- `plain` — текстовое описание изменений
+- `json` — машиночитаемый JSON
 
-- JSON (.json)
+## Asciinema
 
-- YAML (.yaml, .yml)
-
-## Usage
-
-Place the files you want to compare inside the tests/test_data directory.
-Run the following command, replacing file1 and file2 with your actual file names:
-uv run gendiff tests/test_data/<file1> tests/test_data/<file2>
-By default, the output is formatted using the stylish formatter.
-To use a different format (json or plain), specify it with the -f flag:
-Пример вывода инструмента при использовании разных форматтеров:
-
-## Default (stylish) formatter:
-``` bash
-uv run gendiff tests/test_data/<file1> tests/test_data/<file1>
-```
-Using the JSON formatter:
-``` bash
-uv run gendiff -f stylish tests/test_data/<file1> tests/test_data/<file1>
-```
-Using the Plain formatter:
-``` bash
-uv run gendiff -f plain tests/test_data/<file1> tests/test_data/<file1>
-```
-Development and Testing
-
-## Linting
-
-Run ruff to check for linting issues:
-
-make lint
-Running Tests
-
-make test-coverage
+[![asciicast](https://asciinema.org/a/placeholder.svg)](https://asciinema.org)
